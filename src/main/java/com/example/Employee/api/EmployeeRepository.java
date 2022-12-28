@@ -1,9 +1,15 @@
 package com.example.Employee.api;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
+import java.util.List;
 
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+    List<Employee> findByName(String name);
+
+    List<Employee> findByAge(int age);
+
+    List<Employee> findByAddress(String address);
 }
