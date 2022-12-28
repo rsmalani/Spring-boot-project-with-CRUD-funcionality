@@ -74,6 +74,10 @@ public class Employee {
     @Nonnull
     private String name;
     private int age;
+
+    public Employee() {
+    }
+
     private String address;
 
 }
