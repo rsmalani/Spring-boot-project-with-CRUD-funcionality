@@ -62,4 +62,10 @@ public class EmployeeController {
     public Employee updateAddressById(@RequestParam @Validated int id,@RequestParam String address) {
         return employeeService.updateAddressById(id, address);
     }
+
+    @PostMapping("/delete/user")
+    @ResponseBody
+    public String deleteById(@RequestParam @Validated int id) {
+        return employeeService.deleteById(id);
+    }
 }

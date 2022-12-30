@@ -49,4 +49,13 @@ public class EmployeeService {
         employeeRepository.save(employee);
         return employee;
     }
+
+    public String deleteById(int id) {
+        boolean ifExists = employeeRepository.existsById(id);
+            if (!ifExists) {
+                return "The record does not exists";
+            }
+        employeeRepository.deleteById(id);
+        return "Record deleted";
+    }
 }
