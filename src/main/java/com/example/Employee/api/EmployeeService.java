@@ -28,4 +28,25 @@ public class EmployeeService {
     public List<Employee> displayByAddress(String address) {
         return employeeRepository.findByAddress(address);
     }
+
+    public Employee updateNameById(int id, String name) {
+        Employee employee = employeeRepository.findById(id).get();
+        employee.setName(name);
+        employeeRepository.save(employee);
+        return employee;
+    }
+
+    public Employee updateAgeById(int id, int age) {
+        Employee employee = employeeRepository.findById(id).get();
+        employee.setAge(age);
+        employeeRepository.save(employee);
+        return employee;
+    }
+
+    public Employee updateAddressById(int id, String address) {
+        Employee employee = employeeRepository.findById(id).get();
+        employee.setAddress(address);
+        employeeRepository.save(employee);
+        return employee;
+    }
 }
