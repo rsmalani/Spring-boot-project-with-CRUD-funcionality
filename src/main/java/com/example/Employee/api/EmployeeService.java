@@ -13,39 +13,23 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
-    public List<Employee> displayAllEmployee() {
+    public List<Employee> fetchAllEmployees() {
         return (List<Employee>) employeeRepository.findAll();
     }
 
-    public List<Employee> displayByName(String name) {
+    public List<Employee> fetchByName(String name) {
         return employeeRepository.findByName(name);
     }
 
-    public List<Employee> displayByAge(int age) {
+    public List<Employee> fetchByAge(int age) {
         return employeeRepository.findByAge(age);
     }
 
-    public List<Employee> displayByAddress(String address) {
+    public List<Employee> fetchByAddress(String address) {
         return employeeRepository.findByAddress(address);
     }
 
-    public Employee updateNameById(int id, String name) {
-        Employee employee = employeeRepository.findById(id).get();
-        employee.setName(name);
-        employeeRepository.save(employee);
-        return employee;
-    }
-
-    public Employee updateAgeById(int id, int age) {
-        Employee employee = employeeRepository.findById(id).get();
-        employee.setAge(age);
-        employeeRepository.save(employee);
-        return employee;
-    }
-
-    public Employee updateAddressById(int id, String address) {
-        Employee employee = employeeRepository.findById(id).get();
-        employee.setAddress(address);
+    public Employee update(Employee employee) {
         employeeRepository.save(employee);
         return employee;
     }
@@ -57,5 +41,10 @@ public class EmployeeService {
             }
         employeeRepository.deleteById(id);
         return "Record deleted";
+    }
+
+    // To be updated
+    public Employee fetchEmployeeDetails(String username) {
+        return null;
     }
 }

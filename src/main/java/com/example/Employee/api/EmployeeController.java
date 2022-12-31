@@ -23,49 +23,42 @@ public class EmployeeController {
 
     // This method displays all employee details of the database to the end user.
     @GetMapping("/fetch/all")
-    public List<Employee> displayAllEmployee() {
-        return employeeService.displayAllEmployee();
+    public List<Employee> fetchAllEmployees() {
+        return employeeService.fetchAllEmployees();
     }
 
     // This method displays all employees with same name given by end user to the end user.
     @GetMapping("/fetch/all/name")
-    public List<Employee> displayByName(@RequestParam @Validated String name) {
-        return employeeService.displayByName(name);
+    public List<Employee> fetchByName(@RequestParam String name) {
+        return employeeService.fetchByName(name);
     }
 
     // This method displays all employees with same age given by end user to the end user.
     @GetMapping("/fetch/all/age")
-    public List<Employee> displayByAge(@RequestParam @Validated int age) {
-        return employeeService.displayByAge(age);
+    public List<Employee> fetchByAge(@RequestParam int age) {
+        return employeeService.fetchByAge(age);
     }
 
     // This method displays all employees with same address given by end user to the end user.
     @GetMapping("/fetch/all/address")
-    public List<Employee> displayByAddress(@RequestParam @Validated String address) {
-        return employeeService.displayByAddress(address);
+    public List<Employee> fetchByAddress(@RequestParam String address) {
+        return employeeService.fetchByAddress(address);
+    }
+
+    @PostMapping("/fetch/all/details")
+    public Employee fetchEmployeeDetails(@RequestParam String username) {
+        return employeeService.fetchEmployeeDetails(username);
     }
 
     // This method updates employee's name with name given by end user.
-    @GetMapping("/update/name")
-    public Employee updateNameById(@RequestParam @Validated int id,@RequestParam String name) {
-        return employeeService.updateNameById(id, name);
-    }
-
-    // This method updates employee's age with age given by end user.
-    @GetMapping("/update/age")
-    public Employee updateAgeById(@RequestParam @Validated int id,@RequestParam int age) {
-        return employeeService.updateAgeById(id, age);
-    }
-
-    // This method updates employee's address with address given by end user.
-    @GetMapping("/update/address")
-    public Employee updateAddressById(@RequestParam @Validated int id,@RequestParam String address) {
-        return employeeService.updateAddressById(id, address);
+    @GetMapping("/update")
+    public Employee update(@RequestBody Employee employee) {
+        return employeeService.update(employee);
     }
 
     @PostMapping("/delete/user")
     @ResponseBody
-    public String deleteById(@RequestParam @Validated int id) {
+    public String deleteById(@RequestParam int id) {
         return employeeService.deleteById(id);
     }
 }

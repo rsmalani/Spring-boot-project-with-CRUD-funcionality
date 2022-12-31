@@ -22,6 +22,41 @@ public class Employee {
     @Column(name = "emp_address")
     private String address;
 
+    @Column(name="emp_username")
+    private String username;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && age == employee.age && Objects.equals(name, employee.name) && Objects.equals(address, employee.address) && Objects.equals(username, employee.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, age, address, username);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", username='" + username + '\'' +
+                '}';
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public int getId() {
         return id;
     }
@@ -63,26 +98,4 @@ public class Employee {
     public Employee() {
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", address='" + address + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return id == employee.id && age == employee.age && name.equals(employee.name) && address.equals(employee.address);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, age, address);
-    }
 }
