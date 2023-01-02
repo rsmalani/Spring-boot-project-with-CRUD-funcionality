@@ -1,4 +1,4 @@
-package com.example.Employee.api;
+package com.example.Employee.api.Daos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nonnull;
@@ -24,6 +24,10 @@ public class Employee {
 
     @Column(name="emp_username")
     private String username;
+
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private LoginDetails loginDetails;
 
     @Override
     public boolean equals(Object o) {

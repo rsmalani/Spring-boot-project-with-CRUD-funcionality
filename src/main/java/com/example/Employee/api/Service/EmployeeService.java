@@ -1,5 +1,7 @@
-package com.example.Employee.api;
+package com.example.Employee.api.Service;
 
+import com.example.Employee.api.Daos.Employee;
+import com.example.Employee.api.Daos.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -35,16 +37,14 @@ public class EmployeeService {
     }
 
     public String deleteById(int id) {
-        boolean ifExists = employeeRepository.existsById(id);
-            if (!ifExists) {
-                return "The record does not exists";
-            }
+        if (!employeeRepository.existsById(id)) return "The record does not exists";
         employeeRepository.deleteById(id);
         return "Record deleted";
     }
 
-    // To be updated
-    public Employee fetchEmployeeDetails(String username) {
-        return null;
+    public Employee fetchById(int id) {
+        if (!employeeRepository.existsById(id))
+            return null;
+        return employeeRepository.findById(id).get();
     }
 }
