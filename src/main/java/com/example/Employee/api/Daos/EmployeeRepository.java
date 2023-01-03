@@ -7,7 +7,9 @@ import java.util.Optional;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
-    List<Employee> findByName(String name);
+    List<Employee> findByFirstName(String firstName);
+
+    List<Employee> findByLastName(String firstName);
 
     List<Employee> findByAge(int age);
 

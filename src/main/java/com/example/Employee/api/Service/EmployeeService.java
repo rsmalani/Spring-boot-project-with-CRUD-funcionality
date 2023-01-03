@@ -19,8 +19,12 @@ public class EmployeeService {
         return (List<Employee>) employeeRepository.findAll();
     }
 
-    public List<Employee> fetchByName(String name) {
-        return employeeRepository.findByName(name);
+    public List<Employee> fetchByFirstName(String firstName) {
+        return employeeRepository.findByFirstName(firstName);
+    }
+
+    public List<Employee> fetchByLastName(String lastName) {
+        return employeeRepository.findByLastName(lastName);
     }
 
     public List<Employee> fetchByAge(int age) {

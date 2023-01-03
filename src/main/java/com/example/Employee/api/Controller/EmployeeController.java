@@ -38,11 +38,18 @@ public class EmployeeController {
         return employeeService.fetchAllEmployees();
     }
 
-    // This method responds to HTTP.GET request to the server at "/employee/name/all" domain to get employees with same
-    // name given by the end user and returns list of them.
-    @GetMapping("/fetch/name/all")
-    public List<Employee> fetchByName(@RequestParam String name) {
-        return employeeService.fetchByName(name);
+    // This method responds to HTTP.GET request to the server at "/employee/firstName/all" domain to get employees with same
+    // first name given by the end user and returns list of them.
+    @GetMapping("/fetch/firstName/all")
+    public List<Employee> fetchByFirstName(@RequestParam String firstName) {
+        return employeeService.fetchByFirstName(firstName);
+    }
+
+    // This method responds to HTTP.GET request to the server at "/employee/lastName/all" domain to get employees with same
+    // last name given by the end user and returns list of them.
+    @GetMapping("/fetch/lastName/all")
+    public List<Employee> fetchByLastName(@RequestParam String LastName) {
+        return employeeService.fetchByLastName(LastName);
     }
 
     // This method responds to HTTP.GET request to the server at "/employee/age/all" domain to get employees with same
