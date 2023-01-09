@@ -3,10 +3,13 @@ package com.example.Employee.api.Controller;
 import com.example.Employee.api.Daos.Employee;
 import com.example.Employee.api.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
+
 
 // This is the controller of the app for Employee details.
 @RestController
@@ -41,7 +44,15 @@ public class EmployeeController {
     // This method responds to HTTP.GET request to the server at "/employee/firstName/all" domain to get employees with same
     // first name given by the end user and returns list of them.
     @GetMapping("/fetch/firstName/all")
-    public List<Employee> fetchByFirstName(@RequestParam String firstName) {
+    public List<Employee> fetchByFirstName(@RequestParam String firstName) throws ResponseStatusException{
+        try {
+            List<Employee> returnList = employeeService.fetchByFirstName(firstName);
+            return returnList;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Enter correct value.", e);
+        }
+    }
+    public List<Employee> returnFetchByFirstName(String firstName) {
         return employeeService.fetchByFirstName(firstName);
     }
 
@@ -80,4 +91,10 @@ public class EmployeeController {
     public String deleteById(@RequestParam int id) {
         return employeeService.deleteById(id);
     }
+
+    @GetMapping("/display/all")
+    public String viewAllEmployees(ModelMap model) {
+        return "display";
+    }
+
 }
