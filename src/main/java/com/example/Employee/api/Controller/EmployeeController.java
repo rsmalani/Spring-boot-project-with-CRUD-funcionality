@@ -46,8 +46,7 @@ public class EmployeeController {
     @GetMapping("/fetch/firstName/all")
     public List<Employee> fetchByFirstName(@RequestParam String firstName) throws ResponseStatusException{
         try {
-            List<Employee> returnList = employeeService.fetchByFirstName(firstName);
-            return returnList;
+            return employeeService.fetchByFirstName(firstName);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Enter correct value.", e);
         }
@@ -90,11 +89,6 @@ public class EmployeeController {
     @ResponseBody
     public String deleteById(@RequestParam int id) {
         return employeeService.deleteById(id);
-    }
-
-    @GetMapping("/display/all")
-    public String viewAllEmployees(ModelMap model) {
-        return "display";
     }
 
 }
