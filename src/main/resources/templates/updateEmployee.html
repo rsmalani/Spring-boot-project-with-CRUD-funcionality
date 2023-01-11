@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update tab</title>
+</head>
+<body>
+  <table>
+    <form action="#" th:action="@{/employee/update/details}" th:object="${employee}">
+      <tbody>
+        <tr>
+          <td></td>
+          <td><input type="hidden" th:field="*{id}"></td>
+        </tr>
+        <tr>
+          <td>Enter new First name</td>
+          <td><input type="text" th:field="*{firstName}" name="firstName"></td>
+        </tr>
+        <tr>
+          <td>Enter new Last name</td>
+          <td><input type="text" th:field="*{lastName}" name="lastName"></td>
+        </tr>
+        <tr>
+          <td>Enter new Age</td>
+          <td><input type="text" th:field="*{age}" name="age"></td>
+        </tr>
+        <tr>
+          <td>Enter new Address</td>
+          <td><input type="text" th:field="*{address}" name="address"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" value="submit"></td>
+        </tr>
+      </tbody>
+    </form>
+  </table>
+<hr>
+<a th:href="@{/index}">Back to index of application.</a>
+</body>
+</html>

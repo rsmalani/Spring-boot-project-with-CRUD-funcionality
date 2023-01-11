@@ -78,9 +78,9 @@ public class EmployeeController {
 
     // This method responds to HTTP.PUT request to the server at "/employee/update" to
     // update employee's detail given by the end user.
-    @PutMapping("/update")
-    public Employee update(@RequestBody Employee employee) {
-        return employeeService.update(employee);
+    public String update(Employee employee) {
+        employeeService.update(employee);
+        return "Employee updated";
     }
 
     // This method responds to HTTP.DELETE request to the server at "/employee/delete" to

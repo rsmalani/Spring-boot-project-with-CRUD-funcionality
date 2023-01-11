@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"><head>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
     <meta charset = "utf-8" />
     <title>Spring Boot Application</title>
 </head>
 <body>
     <h3>Employee List</h3>
+    <form action="/employee/display/All" method="get">
+        <button type="submit">Click here to display all employee details</button>
+    </form>
     <table style="width:80%" border="1">
     <thead>
         <tr>
@@ -20,6 +24,7 @@
             <td th:text="${employee.lastName}"></td>
             <td th:text="${employee.age}"></td>
             <td th:text="${employee.address}"></td>
+            <td><a th:href="@{/employee/update/{id}(id=${employee.id})}">Update</a></td>
         </tr>
     </tbody>
     </table>
