@@ -27,8 +27,13 @@ public class LoginDetails {
     private String password;
 
     public LoginDetails(String username, String password) {
+        super();
         this.username = username;
         this.password = password;
+    }
+
+    public LoginDetails() {
+        super();
     }
 
     public String getUsername() {
@@ -49,6 +54,14 @@ public class LoginDetails {
 
     public int getLoginId() {
         return loginId;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override

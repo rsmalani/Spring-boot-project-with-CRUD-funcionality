@@ -18,6 +18,7 @@
             <th>Last Name</th>
             <th>Age</th>
             <th>Address</th>
+            <th>Role</th>
         </tr>
     </thead>
     <tbody align="center">
@@ -26,6 +27,7 @@
             <td th:text="${employee.lastName}"></td>
             <td th:text="${employee.age}"></td>
             <td th:text="${employee.address}"></td>
+            <td th:text="${employee.role}"></td>
             <td><a th:href="@{/employee/update/{id}(id=${employee.id})}">Update</a></td>
             <td><a th:href="@{/employee/delete/{id}(id=${employee.id})}">Delete</a></td>
         </tr>

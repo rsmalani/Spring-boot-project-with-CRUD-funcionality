@@ -2,6 +2,7 @@ package com.example.Employee.api.Controller;
 
 import com.example.Employee.api.Daos.Employee;
 import com.example.Employee.api.Daos.EmployeeRepository;
+import com.example.Employee.api.Daos.LoginDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,13 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Objects;
+
 @Controller
 public class WebController {
 
     @Autowired
     private EmployeeController employeeController;
+
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private LoginController loginController;
 
     @GetMapping("/employee/display/All")
     public String viewAllEmployees(Model model) {
@@ -58,5 +62,28 @@ public class WebController {
     public String deleteEmployee(@PathVariable("id")int id) {
         employeeController.deleteById(id);
         return "redirect:/index";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        LoginDetails loginDetails = new LoginDetails();
+        model.addAttribute("loginDetails", loginDetails);
+        return "login";
+    }
+
+    @PostMapping("/login/details")
+    public String login(@ModelAttribute("loginDetails")LoginDetails loginDetails) {
+        String username = loginDetails.getUsername();
+        String password = loginDetails.getPassword();
+        LoginDetails ld = loginController.login(username, password);
+        if (ld.equals(null)) {
+            return "redirect/login";
+        }
+        Employee employee = ld.getEmployee();
+        if (Objects.equals(employee.getRole(), "Admin")) {
+            return "index";
+        }
+        return "index";
+//        return "employeeLogin";
     }
 }

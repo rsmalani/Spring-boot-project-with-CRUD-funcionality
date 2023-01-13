@@ -1,6 +1,5 @@
 package com.example.Employee.api.Daos;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 
@@ -25,20 +24,12 @@ public class Employee {
     @Column(name = "emp_address")
     private String address;
 
-    @Column(name="emp_username")
-    private String username;
+    @Column(name="emp_role")
+    private String role;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private LoginDetails loginDetails;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public int getId() {
         return id;
@@ -80,6 +71,22 @@ public class Employee {
         this.address = address;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public LoginDetails getLoginDetails() {
+        return loginDetails;
+    }
+
+    public void setLoginDetails(LoginDetails loginDetails) {
+        this.loginDetails = loginDetails;
+    }
+
     public Employee(String firstName, String lastName, int age, String address) {
         super();
         this.firstName = firstName;
@@ -100,7 +107,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", address='" + address + '\'' +
-                ", username='" + username + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 
@@ -109,11 +116,11 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && age == employee.age && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && address.equals(employee.address) && username.equals(employee.username);
+        return id == employee.id && age == employee.age && firstName.equals(employee.firstName) && lastName.equals(employee.lastName) && address.equals(employee.address) && role.equals(employee.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, age, address, username);
+        return Objects.hash(id, firstName, lastName, age, address, role);
     }
 }

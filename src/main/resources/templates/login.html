@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h1>Demo Employee registration application</h1>
+<br><br>
+<form action="#" th:action="@{/login/details}" th:object="${loginDetails}" method="post">
+  <table>
+    <tbody>
+    <tr>
+      <td>Enter username</td>
+      <td><input type="text" th:field="*{username}" name="username"></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="password" th:field="*{password}" name="password"></td>
+    </tr>
+    <tr>
+      <td><input type="submit" th:action="@{/create/username}" name="Sign up" value="Sign up"></td>
+      <td><input type="submit" name="Login" value="login"></td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+</body>
+</html>
